@@ -1,10 +1,22 @@
-.next/
-node_modules/
-.pnpm-store/
-.tmp/
-out/
-dist/
-*.log
+# dependencies
+/node_modules/
+/.pnp
+.pnp.js
+/.pnpm-store/
+
+# builds and tests
+/.next/
+/out/
+/build/
+/dist/
+/coverage/
 *.tsbuildinfo
+
+# local files
+/.tmp/
+.DS_Store
+*.pem
+*.log
 .env*
 !.env.example
+/.vercel/
