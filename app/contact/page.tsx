@@ -1,6 +1,11 @@
-import PageNav from "../../components/PageNav";
+import WorkInProgress from "../../components/WorkInProgress";
 
 export default function ContactPage() {
+  return <WorkInProgress section="Contact" />;
+}
+
+/* Placeholder content retained for future development.
+function ContactContent() {
   return (
     <main className="subpage">
       <PageNav />
@@ -16,3 +21,4 @@ export default function ContactPage() {
     </main>
   );
 }
+*/

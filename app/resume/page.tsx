@@ -1,5 +1,6 @@
-import PageNav from "../../components/PageNav";
+import WorkInProgress from "../../components/WorkInProgress";
 
+/* Placeholder content retained for future development.
 const logs = [
   "Built RAG systems",
   "Fine-tuned model workflows",
@@ -7,8 +8,14 @@ const logs = [
   "Automated support tickets",
   "Built internal tools for operators"
 ];
+*/
 
 export default function ResumePage() {
+  return <WorkInProgress section="Resume" />;
+}
+
+/* Placeholder content retained for future development.
+function ResumeContent() {
   return (
     <main className="subpage">
       <PageNav />
@@ -27,3 +34,4 @@ export default function ResumePage() {
     </main>
   );
 }
+*/

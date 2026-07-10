@@ -1,9 +1,16 @@
 import type { CSSProperties } from "react";
-import PageNav from "../../components/PageNav";
+import WorkInProgress from "../../components/WorkInProgress";
 
+/* Placeholder content retained for future development.
 const skills = ["Python", "FastAPI", "AWS", "OpenAI", "React", "Next.js", "Computer Vision", "LLMs", "Docker"];
+*/
 
 export default function ExperiencePage() {
+  return <WorkInProgress section="Experience" />;
+}
+
+/* Placeholder content retained for future development.
+function ExperienceContent() {
   return (
     <main className="subpage">
       <PageNav />
@@ -21,3 +28,4 @@ export default function ExperiencePage() {
     </main>
   );
 }
+*/

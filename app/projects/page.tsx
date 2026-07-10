@@ -1,12 +1,19 @@
-import PageNav from "../../components/PageNav";
+import WorkInProgress from "../../components/WorkInProgress";
 
+/* Placeholder content retained for future development.
 const projects = [
   ["RAG Command Center", "Retrieval, evaluation, and operator tooling for production AI workflows."],
   ["Vision Pipeline", "Computer vision automation with quality loops and pragmatic deployment."],
   ["Support Autopilot", "Ticket triage and internal systems that remove repetitive work."]
 ];
+*/
 
 export default function ProjectsPage() {
+  return <WorkInProgress section="Projects" />;
+}
+
+/* Placeholder content retained for future development.
+function ProjectsContent() {
   return (
     <main className="subpage">
       <PageNav />
@@ -26,3 +33,4 @@ export default function ProjectsPage() {
     </main>
   );
 }
+*/
