@@ -96,7 +96,7 @@ export default function Home() {
       return;
     }
 
-    const timer = window.setTimeout(() => setHyperdrive(true), 1800);
+    const timer = window.setTimeout(() => setHyperdrive(true), 1400);
     return () => window.clearTimeout(timer);
   }, [launchReady]);
 

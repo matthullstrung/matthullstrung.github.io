@@ -1935,12 +1935,12 @@ body.launching .site {
 
 @media (max-width: 720px) {
   .home-experience .transmission.process-copy {
-    border: 1px solid rgba(176, 218, 255, 0.12);
+    border: 1px solid rgba(176, 218, 255, 0.08);
     padding: 1rem;
-    background: rgba(2, 7, 13, 0.58);
-    box-shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, 0.38);
-    backdrop-filter: blur(16px) saturate(0.82);
-    -webkit-backdrop-filter: blur(16px) saturate(0.82);
+    background: rgba(2, 7, 13, 0.28);
+    box-shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(8px) saturate(0.92);
+    -webkit-backdrop-filter: blur(8px) saturate(0.92);
   }
 
   .home-experience .transmission.process-copy h1 {
