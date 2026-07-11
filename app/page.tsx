@@ -55,6 +55,7 @@ export default function Home() {
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const [hyperdrive, setHyperdrive] = useState(false);
   const [finalSlide, setFinalSlide] = useState(false);
+  const launchReady = progress >= 0.94;
 
   useEffect(() => {
     const introTimer = window.setTimeout(() => setIntroReady(true), 1800);
@@ -84,15 +85,15 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (progress < 0.985) {
+    if (!launchReady) {
       setHyperdrive(false);
       setFinalSlide(false);
       return;
     }
 
-    const timer = window.setTimeout(() => setHyperdrive(true), 2000);
+    const timer = window.setTimeout(() => setHyperdrive(true), 450);
     return () => window.clearTimeout(timer);
-  }, [progress]);
+  }, [launchReady]);
 
   useEffect(() => {
     if (!hyperdrive) return;
