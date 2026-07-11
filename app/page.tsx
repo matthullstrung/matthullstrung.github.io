@@ -56,7 +56,7 @@ export default function Home() {
   const [hyperdrive, setHyperdrive] = useState(false);
   const [finalSlide, setFinalSlide] = useState(false);
   const targetProgress = useRef(0);
-  const launchReady = progress >= 0.94;
+  const launchReady = progress >= 0.97;
 
   useEffect(() => {
     const introTimer = window.setTimeout(() => setIntroReady(true), 1800);
@@ -96,7 +96,7 @@ export default function Home() {
       return;
     }
 
-    const timer = window.setTimeout(() => setHyperdrive(true), 450);
+    const timer = window.setTimeout(() => setHyperdrive(true), 1800);
     return () => window.clearTimeout(timer);
   }, [launchReady]);
 
@@ -128,9 +128,9 @@ export default function Home() {
     (window as typeof window & { launch?: () => string }).launch = launch;
   }, []);
 
-  const phaseIndex = finalSlide ? 4 : progress < 0.16 ? 0 : progress < 0.5 ? 1 : progress < 0.78 ? 2 : 3;
+  const phaseIndex = finalSlide ? 4 : progress < 0.16 ? 0 : progress < 0.5 ? 1 : progress < 0.72 ? 2 : 3;
   const phase = phases[phaseIndex];
-  const phaseBounds = [[0, 0.16], [0.16, 0.5], [0.5, 0.78], [0.78, 0.94]][Math.min(phaseIndex, 3)];
+  const phaseBounds = [[0, 0.16], [0.16, 0.5], [0.5, 0.72], [0.72, 0.97]][Math.min(phaseIndex, 3)];
   const phaseProgress = Math.min(1, Math.max(0, (progress - phaseBounds[0]) / (phaseBounds[1] - phaseBounds[0])));
   const fadeIn = phaseIndex === 0 ? 1 : Math.min(1, phaseProgress / 0.24);
   const fadeOut = Math.min(1, (1 - phaseProgress) / 0.28);
