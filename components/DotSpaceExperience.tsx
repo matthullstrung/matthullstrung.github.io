@@ -255,6 +255,9 @@ function ParticleSculpture({ tuning, hyperdrive }: { tuning: SceneTuning; hyperd
     const interactive = ease(clamp01((progress - 0.78) / 0.14));
     const steerX = globalPointer.current.x;
     const bounds = getSceneScale(size.width / Math.max(1, size.height), tuning.trenchWidth);
+    const mobileComposition = size.width / Math.max(1, size.height) < 0.75
+      ? (1 - interactive) * ease(clamp01((progress - 0.34) / 0.18))
+      : 0;
 
     for (let i = 0; i < COUNT; i += 1) {
       const index = i * 3;
@@ -297,10 +300,10 @@ function ParticleSculpture({ tuning, hyperdrive }: { tuning: SceneTuning; hyperd
       pointsRef.current.rotation.x = mix(assembly * Math.PI * 0.5, 0, interactive);
       pointsRef.current.rotation.z = 0;
       const directionY = mix(0.18 - globalShip * 0.28, tuning.directionY, assembly);
-      pointsRef.current.position.y = mix(directionY, -1.45, interactive);
+      pointsRef.current.position.y = mix(directionY - mobileComposition * 0.95, -1.45, interactive);
       pointsRef.current.position.x = steerX * interactive * bounds.steerX;
       pointsRef.current.position.z = -hyperLaunch * 18;
-      pointsRef.current.scale.setScalar(1 - hyperLaunch * 0.84);
+      pointsRef.current.scale.setScalar(mix(1, 0.62, mobileComposition) * (1 - hyperLaunch * 0.84));
     }
 
     if (matRef.current) {
