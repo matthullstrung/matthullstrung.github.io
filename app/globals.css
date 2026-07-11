@@ -1935,12 +1935,7 @@ body.launching .site {
 
 @media (max-width: 720px) {
   .home-experience .transmission.process-copy {
-    border: 1px solid rgba(176, 218, 255, 0.08);
-    padding: 1rem;
-    background: rgba(2, 7, 13, 0.28);
-    box-shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, 0.24);
-    backdrop-filter: blur(8px) saturate(0.92);
-    -webkit-backdrop-filter: blur(8px) saturate(0.92);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.98), 0 0 28px rgba(0, 0, 0, 0.92);
   }
 
   .home-experience .transmission.process-copy h1 {
