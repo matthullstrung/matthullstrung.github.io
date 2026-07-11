@@ -1098,6 +1098,7 @@ body.launching .site {
   position: sticky;
   top: 0;
   height: 100svh;
+  touch-action: pan-y;
   overflow: hidden;
   background: #010309;
   isolation: isolate;

@@ -86,16 +86,25 @@ function useGlobalPointer() {
   const pointer = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    const update = (event: PointerEvent) => {
-      pointer.current.x = (event.clientX / window.innerWidth) * 2 - 1;
-      pointer.current.y = -((event.clientY / window.innerHeight) * 2 - 1);
+    const update = (clientX: number, clientY: number) => {
+      pointer.current.x = (clientX / window.innerWidth) * 2 - 1;
+      pointer.current.y = -((clientY / window.innerHeight) * 2 - 1);
+    };
+    const updatePointer = (event: PointerEvent) => update(event.clientX, event.clientY);
+    const updateTouch = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      if (touch) update(touch.clientX, touch.clientY);
     };
 
-    window.addEventListener("pointermove", update, { passive: true });
-    window.addEventListener("pointerdown", update, { passive: true });
+    window.addEventListener("pointermove", updatePointer, { passive: true });
+    window.addEventListener("pointerdown", updatePointer, { passive: true });
+    window.addEventListener("touchstart", updateTouch, { passive: true });
+    window.addEventListener("touchmove", updateTouch, { passive: true });
     return () => {
-      window.removeEventListener("pointermove", update);
-      window.removeEventListener("pointerdown", update);
+      window.removeEventListener("pointermove", updatePointer);
+      window.removeEventListener("pointerdown", updatePointer);
+      window.removeEventListener("touchstart", updateTouch);
+      window.removeEventListener("touchmove", updateTouch);
     };
   }, []);
 
