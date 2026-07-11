@@ -132,8 +132,8 @@ export default function Home() {
   const phase = phases[phaseIndex];
   const phaseBounds = [[0, 0.16], [0.16, 0.5], [0.5, 0.78], [0.78, 0.94]][Math.min(phaseIndex, 3)];
   const phaseProgress = Math.min(1, Math.max(0, (progress - phaseBounds[0]) / (phaseBounds[1] - phaseBounds[0])));
-  const fadeIn = phaseIndex === 0 ? 1 : Math.min(1, phaseProgress / 0.16);
-  const fadeOut = Math.min(1, (1 - phaseProgress) / 0.18);
+  const fadeIn = phaseIndex === 0 ? 1 : Math.min(1, phaseProgress / 0.24);
+  const fadeOut = Math.min(1, (1 - phaseProgress) / 0.28);
   const copyOpacity = finalSlide ? 1 : Math.min(fadeIn, fadeOut);
   const copyY = phaseProgress < 0.5 ? (1 - copyOpacity) * 18 : (copyOpacity - 1) * 14;
   const interactive = Math.min(1, Math.max(0, (progress - 0.78) / 0.2));
@@ -182,7 +182,7 @@ export default function Home() {
             </nav>
           </header>
 
-          <div className={`${introReady ? "transmission open" : "transmission"} ${finalSlide ? "final-copy" : phaseIndex === 0 ? "identity-copy" : "process-copy"}`}>
+          <div key={phaseIndex} className={`${introReady ? "transmission open" : "transmission"} ${finalSlide ? "final-copy" : phaseIndex === 0 ? "identity-copy" : "process-copy"}`}>
             <p>{phase.label}</p>
             <h1>{phase.title}</h1>
             <span className="transmission-summary">{phase.eyebrow}</span>
