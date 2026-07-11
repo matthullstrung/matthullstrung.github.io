@@ -130,6 +130,12 @@ export default function Home() {
 
   const phaseIndex = finalSlide ? 4 : progress < 0.16 ? 0 : progress < 0.5 ? 1 : progress < 0.78 ? 2 : 3;
   const phase = phases[phaseIndex];
+  const phaseBounds = [[0, 0.16], [0.16, 0.5], [0.5, 0.78], [0.78, 0.94]][Math.min(phaseIndex, 3)];
+  const phaseProgress = Math.min(1, Math.max(0, (progress - phaseBounds[0]) / (phaseBounds[1] - phaseBounds[0])));
+  const fadeIn = phaseIndex === 0 ? 1 : Math.min(1, phaseProgress / 0.16);
+  const fadeOut = Math.min(1, (1 - phaseProgress) / 0.18);
+  const copyOpacity = finalSlide ? 1 : Math.min(fadeIn, fadeOut);
+  const copyY = phaseProgress < 0.5 ? (1 - copyOpacity) * 18 : (copyOpacity - 1) * 14;
   const interactive = Math.min(1, Math.max(0, (progress - 0.78) / 0.2));
   const flareX = 51 + Math.sin(progress * Math.PI * 1.2) * 7 + pointer.x * interactive * 24;
   const flareY = 48 + progress * 8 + pointer.y * interactive * 18;
@@ -147,7 +153,9 @@ export default function Home() {
     "--flare-ghost-y": `${100 - flareY}%`,
     "--dock-opacity": progress > 0.62 ? 1 : 0,
     "--dock-y": `${progress > 0.62 ? 0 : 18}px`,
-    "--game-opacity": !hyperdrive && progress > 0.86 ? 1 : 0
+    "--game-opacity": !hyperdrive && progress > 0.86 ? 1 : 0,
+    "--copy-opacity": copyOpacity,
+    "--copy-y": `${copyY}px`
   } as CSSProperties;
 
   return (

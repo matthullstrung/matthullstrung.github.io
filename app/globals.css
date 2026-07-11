@@ -1237,6 +1237,11 @@ body.launching .site {
   z-index: 8;
 }
 
+.home-experience .transmission.open:not(.final-copy) {
+  opacity: var(--copy-opacity);
+  transform: translateY(var(--copy-y));
+}
+
 .home-experience .transmission h1 {
   max-width: 12ch;
   font-size: clamp(3.1rem, 8vw, 7.7rem);
