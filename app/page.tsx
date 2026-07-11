@@ -102,7 +102,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!hyperdrive) return;
-    const timer = window.setTimeout(() => setFinalSlide(true), 4300);
+    const timer = window.setTimeout(() => setFinalSlide(true), 3300);
     return () => window.clearTimeout(timer);
   }, [hyperdrive]);
 
