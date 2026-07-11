@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import type { CSSProperties } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const DotSpaceExperience = dynamic(() => import("../components/DotSpaceExperience"), {
   ssr: false,
@@ -55,21 +55,26 @@ export default function Home() {
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const [hyperdrive, setHyperdrive] = useState(false);
   const [finalSlide, setFinalSlide] = useState(false);
+  const targetProgress = useRef(0);
   const launchReady = progress >= 0.94;
 
   useEffect(() => {
     const introTimer = window.setTimeout(() => setIntroReady(true), 1800);
     let frame = 0;
+    let displayedProgress = 0;
+
+    const animate = () => {
+      const distance = targetProgress.current - displayedProgress;
+      displayedProgress = Math.abs(distance) < 0.0001 ? targetProgress.current : displayedProgress + distance * 0.14;
+      setProgress(displayedProgress);
+      document.documentElement.style.setProperty("--mission-progress", displayedProgress.toFixed(4));
+      frame = displayedProgress === targetProgress.current ? 0 : window.requestAnimationFrame(animate);
+    };
 
     const update = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(() => {
-        frame = 0;
-        const scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-        const next = Math.min(1, Math.max(0, window.scrollY / scrollMax));
-        setProgress((current) => (current === next ? current : next));
-        document.documentElement.style.setProperty("--mission-progress", next.toFixed(4));
-      });
+      const scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      targetProgress.current = Math.min(1, Math.max(0, window.scrollY / scrollMax));
+      if (!frame) frame = window.requestAnimationFrame(animate);
     };
 
     update();
